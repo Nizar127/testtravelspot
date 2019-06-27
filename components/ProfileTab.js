@@ -8,7 +8,7 @@ import {
     FlatList
 } from "react-native";
 
-import { Container, Content, Icon, Header, Left, Body, Right, Segment, Button } from 'native-base'
+import { Container,Card, CardItem, Content, Icon, Header, Left, Body, Right, Segment, Button } from 'native-base'
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 var { height, width } = Dimensions.get('window');
@@ -47,6 +47,10 @@ class ProfileTab extends Component {
             activeIndex: 0
         }
     }
+
+    _onPressButton() {
+        Alert.alert('You tapped the button!')
+      }
 
     segmentClicked(index) {
         this.setState({
@@ -115,6 +119,7 @@ class ProfileTab extends Component {
     }
 
     render() {
+        const {navigate} = this.props.navigation;
         return (
             <Container style={styles.container}>
                 <Header style={{ paddingLeft: 10, paddingLeft: 10 }}>
@@ -164,6 +169,21 @@ class ProfileTab extends Component {
                                         <Text style={{ fontSize: 10, color: 'grey' }}>Following</Text>
                                     </View>
                                 </View>
+
+                                {/**this tab for draft plan and view package */}
+                                <Container>
+                                    <Header />
+                                        <Content>
+                                            <Card>
+                                                <CardItem>
+                                                  <Body>
+                                                  <Button primary><Text> Draft Plan</Text></Button>
+                                                   <Button primary><Text>View Packages </Text></Button>
+                                                  </Body>
+                                                </CardItem>
+                                            </Card>
+                                        </Content>
+                                </Container>
 
                                 {/**Edit profile and Settings Buttons **/}
                                 <View style={{ flexDirection: 'row', alignItems: 'flex-start', paddingTop: 10 }}>
@@ -237,6 +257,18 @@ class ProfileTab extends Component {
 
                         {this.renderSection()}
 
+                    </View>
+                    <View>
+                        <Container>
+                            <Content>
+                            <Button rounded success onPress
+                                title="Request Now"
+                                onPress={() => navigate('Map')}
+                            />
+              
+                    
+                            </Content>
+                        </Container>
                     </View>
                 </Content>
             </Container >
